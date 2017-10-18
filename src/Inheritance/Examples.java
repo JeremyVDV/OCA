@@ -84,6 +84,7 @@ class A implements interfaceRegels {
         return "";
     }
     public String test() {
+
         return "";
     }
 }
@@ -98,8 +99,14 @@ class B extends A implements i1 {
 
         Object o2 = b;
         interfaceRegels ir2 = (interfaceRegels) o2;
+        boolean b1 = false;
+        int i1 = 2;
+        int i2 = 3;
+
+        if (b1 = i1 == i2){    System.out.println("true"); } else{    System.out.println("false"); }
     }
 }
+
 
 // Voorbeeld 3
 interface I{
@@ -115,13 +122,33 @@ class CC extends BB{
 
 class Voorbeeld3 {
     public static void main(String... args) {
-        AA a = new AA();
-        BB b = new BB();
-        a = (BB)(I) b;
-        b = (BB)(I) a;
+        // Superclass is een nieuwe subclass kan zonder cast
+        // Childclass is een nieuwe parentclass moet gecast
+
+        // Mogelijke opties zonder cast (super = child):
+        I ia = new AA();
+        I ib = new BB();
+        I ic = new CC();
+
+        AA ab = new BB();
+        AA ac = new CC();
+
+        BB bc = new CC();
+
+        // Uitzondering... laatste klasse
+        CC cc = new CC();
+        // ---------------------------------------------
+        // Mogelijke opties met cast (child = super), maar runtime exception:
+        //CC cb = (CC) new BB();
+        //CC ca = (CC) new AA();
+
+        //BB ba = (BB) new AA();
+
+        // Uitzondering... laatste klasse
+        AA aa = new AA();
+
     }
 }
-
 // Voorbeeld 4
 class CorbaComponent{
     String ior;
@@ -137,6 +164,58 @@ class OrderManager extends CorbaComponent{
 }
 
 class Application{
-    public static void main(String args[]){ start(new OrderManager()); }
-    static void start(CorbaComponent cc){ cc.print(); }
+    public static void main(String args[]){
+        start(new OrderManager());
+    }
+    static void start(CorbaComponent cc){
+        cc.print();
+    }
+}
+
+
+class Wrapper{
+    int w = 10;
+}
+
+ class TestClass{
+
+    static Wrapper changeWrapper(Wrapper w){
+        w = new Wrapper();
+        w.w += 9;
+        return w;
+    }
+
+
+    public static void main(String[] args){
+        Wrapper w = new Wrapper();
+        w.w = 20;
+        changeWrapper(w);
+        w.w += 30;
+        System.out.println(w.w);
+        w = changeWrapper(w);
+        System.out.println(w.w);
+
+        TestClass t = new TestClass();
+        t.testClasses();
+
+    }
+
+    void testClasses() {
+        A a = new A();//1
+        A b = new B();//2
+        B b1 = new B();//2
+
+        System.out.println(b.i);
+    }
+
+     class A{
+         private int i = 10;
+         public void  f(){}
+         public void g(){}
+     }
+
+     class B extends A{
+         public int i = 20;
+         public void g(){}
+     }
 }

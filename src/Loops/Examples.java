@@ -1,6 +1,9 @@
 package Loops;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 // Voorbeeld 1
 class SimpleLoop {
     public static void main(String[] args) {
@@ -27,6 +30,10 @@ class TestClass {
         int k = m1(args.length);
         k += 3 + ++k;
         System.out.println(k);
+
+        int z = m1(args.length);
+        z +=  (++z) + (z = 2);
+        System.out.println(z);
 
     }
 }
@@ -126,5 +133,114 @@ class Test3{
         finally {
         }
         return f ;    // 7
+    }
+}
+// Voorbeeld 8
+class Test8{
+    public static void main(String args[]){
+        double daaa[][][] = new double[3][][];
+        double d = 100.0;
+        double[][] daa = new double[1][1];
+        daa = daaa[0];
+        daaa[0] = daa;
+
+        double[] lol[][] = new double [2][][];
+        double[] lol2[][] = new double [2][][];
+        double[] lol3[] = new double [2][];
+
+
+    }
+}
+
+//Voorbeeld 9
+class Example9{
+    public static void main(String args[]){
+        int i;
+        int j;
+        for (i = 0, j = 0; j < i; ++j, i++){
+            System.out.println(i + " " + j);
+        }
+        System.out.println(i + " " + j);
+    }
+}
+
+// Voorbeeld 10
+class LoopTest{
+    public static void main(String args[]) {
+        int counter = 0;
+        outer:
+        for (int i = 0; i < 3; i++) {
+            middle:
+            for (int j = 0; j < 3; j++) {
+                inner:
+                for (int k = 0; k < 3; k++) {
+                    if (k - j > 0) {
+                        break middle;
+                    }
+                    counter++;
+                }
+            }
+        }
+        System.out.println(counter);
+    }
+}
+
+// Voorbeeld 11
+class Testtt {
+    public static void main(String... args) {
+        List s1 = new ArrayList();
+        s1.add("a");
+        s1.add("b");
+        s1.add("c");
+        s1.add("a");
+        if(s1.remove("a")){
+            if(s1.remove("a")){
+                s1.remove("b");
+            }else{
+                s1.remove("c");
+            }
+        }
+        System.out.println(s1);
+
+        int i;
+        int j;
+        for (i = 0, j = 0 ; j < 1 ; ++j , i++){
+            System.out.println( i + " " + j );
+        }
+        System.out.println( i + " " + j );
+    }
+}
+
+// Voorbeeld 12
+class InitializeArrays {
+    public static void main(String... args) {
+        /* Werkt niet
+        int[][][] slecht1 = {{0, 1}, {2, 3}, {4, 5}};
+
+        -- Toewijst 1 de
+
+        -- Toewijst 1 dimensie, {} eromheen, of elk inpakken in {}
+        int[][] array2D = new int[][]{0, 1};
+
+        -- Mist komma
+        int[][] slecht4 = new int[][] { { 0, 1, 2, 4} {5, 6}};
+        */
+
+
+        // Werkt wel
+        int[][][] goed1 = {{{0, 1}, {2, 3}, {4, 5}}};
+
+        int[] goed3[] = new int [2] [2];
+        goed3[0] [0] = 1;
+        goed3[0] [1] = 2;
+        goed3[1] [0] = 3;
+
+        int[][] slecht3 = new int[][]{{0}, {1}};
+
+        int[] arr = {1, 2};
+        int[][] arr2 = {arr, {1, 2}, new int[5]};
+        int[][][] arr3 = new int[2][2][2];
+
+        Integer[] slecht2[] = new Integer[][] {{1,2,3}};
     }
 }
